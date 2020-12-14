@@ -1,4 +1,4 @@
-FROM reg.tiertime.net/sanbao/alpine:3.12
+FROM alpine:3.12
 MAINTAINER Ximin Zhang <zhangximin@gmail.com>
 LABEL maintainer="Ximin Zhang <zhangximin@gmail.com>"
 
