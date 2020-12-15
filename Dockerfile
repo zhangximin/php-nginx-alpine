@@ -9,9 +9,11 @@ RUN sed -i "s@http://dl-cdn.alpinelinux.org/@https://mirrors.huaweicloud.com/@g"
     rm /etc/nginx/conf.d/default.conf && \
     mkdir -p /var/www/html && \
     openssl req -x509 -nodes -days 3650 \
-    -subj  "/C=CN/ST=Beijing/O=Tiertime Inc/CN=tiertime.com" \
-    -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key \
+    -subj  "/C=CN/ST=Beijing/L=Chaoyang/O=Tiertime Inc/CN=tiertime.com" \
+    -newkey rsa:2048 \
+    -keyout /etc/ssl/private/nginx-selfsigned.key \
     -out /etc/ssl/certs/nginx-selfsigned.crt && \
+    openssl dhparam -out /etc/ssl/certs/dhparam.pem 4096 && \
     chown -R nobody.nobody /var/www/html && \
     chown -R nobody.nobody /run && \
     chown -R nobody.nobody /var/lib/nginx && \
@@ -21,6 +23,7 @@ RUN sed -i "s@http://dl-cdn.alpinelinux.org/@https://mirrors.huaweicloud.com/@g"
 
 COPY config/nginx.conf /etc/nginx/nginx.conf
 COPY config/default.conf /etc/nginx/conf.d/default.conf
+COPY config/options-ssl-nginx.conf /etc/nginx/
 
 COPY config/php-fpm.conf /etc/php7/
 COPY config/www.conf /etc/php7/php-fpm.d/www.conf
