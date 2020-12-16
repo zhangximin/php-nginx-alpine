@@ -5,7 +5,7 @@ LABEL maintainer="Ximin Zhang <zhangximin@gmail.com>"
 RUN sed -i "s@http://dl-cdn.alpinelinux.org/@https://mirrors.huaweicloud.com/@g" /etc/apk/repositories && \
     apk --no-cache add php7 php7-fpm php7-opcache php7-mysqli php7-json php7-openssl php7-curl \
     php7-zlib php7-xml php7-phar php7-intl php7-dom php7-xmlreader php7-ctype php7-session \
-    php7-mbstring php7-gd nginx supervisor curl openssl && \
+    php7-mbstring php7-gd php7-zip php7-simplexml nginx supervisor curl openssl && \
     rm /etc/nginx/conf.d/default.conf && \
     mkdir -p /var/www/html && \
     openssl req -x509 -nodes -days 3650 \
